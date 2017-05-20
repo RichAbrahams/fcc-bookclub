@@ -37,6 +37,14 @@ function SignInForm({ error, handleSubmit, submitting }) {
       </CardTitle>
       <FormSubWrapper className="form-subwrapper">
         <Form onSubmit={handleSubmit}>
+          <p>Test users (email / password):</p>
+          <ul>
+            <li>test1@test.com / password</li>
+            <li>test2@test.com / password</li>
+            <li>test3@test.com / password</li>
+            <li>test4@test.com / password</li>
+          </ul>
+          <hr />
           <Field name="email" component={renderTextField} label="Email" placeholder="Enter email" type="text" />
           <Field name="password" component={renderTextField} label="Password" placeholder="Enter password" type="password" />
           <div>

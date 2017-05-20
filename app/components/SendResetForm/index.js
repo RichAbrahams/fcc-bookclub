@@ -24,7 +24,7 @@ function SendResetForm({ error, handleSubmit, submitting }) {
       </CardTitle>
       <FormSubWrapper className="form-subwrapper">
         <Form onSubmit={handleSubmit}>
-          <h3>Please enter your username, we will email you a password reset link</h3>
+          <h3>Please enter your username, we will email you a password reset link.</h3>
           <Field name="username" component={renderTextField} label="Username" placeholder="username" type="text" />
           <div>
             <Button width="6em" type="submit" disabled={submitting}>{submitting ?

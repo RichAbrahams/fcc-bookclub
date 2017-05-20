@@ -90,6 +90,22 @@ export const FormSubWrapper = styled.div`
   }
 `;
 
+export const CenteredSubWrapper = styled.div`
+  display: flex;
+  width: 100%
+  background: rgb(228, 226, 226);
+  padding: 2em 3em 2em 3em;
+  border: 9px solid;
+  border-color: rgb(210, 210, 210);
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  @media screen and (max-width: 800px) {
+    width: 100%;
+    padding: 2em;
+  }
+`;
+
 export const ImageWrapper = styled.div`
   display: flex;
   width: 50%;
