@@ -14,6 +14,9 @@ function Navigation(props) {
   return (
     <NavWrapper className="nav-wrapper" expandNav={expandNav} expandTo={expandTo(username)}>
       {!username && <UL className="header-ul">
+        <LiWrapper onClick={() => handleSelect('/', toggleNav)} className="li-wrapper">
+          <LI className="header-li"><h3>Available Books</h3></LI>
+        </LiWrapper>
         <LiWrapper onClick={() => handleSelect('/signin', toggleNav)} className="li-wrapper">
           <LI className="header-li"><h3>Sign in</h3></LI>
         </LiWrapper>
@@ -24,7 +27,7 @@ function Navigation(props) {
       }
       {username && <UL className="header-ul">
         <LiWrapper onClick={() => handleSelect('/', toggleNav)} className="li-wrapper">
-          <LI className="header-li"><h3>Loan Book</h3></LI>
+          <LI className="header-li"><h3>Available Books</h3></LI>
         </LiWrapper>
         <LiWrapper onClick={() => handleSelect('/mybooks', toggleNav)} className="li-wrapper">
           <LI className="header-li"><h3>My Books</h3></LI>
