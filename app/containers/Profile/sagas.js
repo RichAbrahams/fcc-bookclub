@@ -16,7 +16,7 @@ export function* updateProfileSaga(action) {
     const response = yield axios.post(requestURL, data.toJS(), config);
     toastr.success('profile updated');
     resolve();
-    yield put(updateProfileSuccess(response.data.user));
+    yield put(updateProfileSuccess(response.data));
   } catch (err) {
     toastr.error('sorry, an error occurred');
     reject(new SubmissionError({ _error: 'sorry, an error occurred' }));

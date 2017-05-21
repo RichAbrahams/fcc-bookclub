@@ -23,7 +23,7 @@ import {
 } from './constants';
 
 import {
-  UPDATE_PROFILE,
+  UPDATE_PROFILE_SUCCESS,
 } from '../Profile/constants';
 
 const initialState = fromJS({
@@ -51,8 +51,10 @@ function headerReducer(state = initialState, action) {
                   .set('city', null)
                   .set('state', null)
                   .set('token', null);
-    case UPDATE_PROFILE:
-      return state;
+    case UPDATE_PROFILE_SUCCESS:
+      return state.set('email', action.payload.email)
+                  .set('city', action.payload.city)
+                  .set('state', action.payload.state);
     default:
       return state;
   }

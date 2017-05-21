@@ -187,7 +187,7 @@ export const TextInput = styled.input`
   padding: 0.5em;
   margin: 0em 0em 1em 0em;
   color: #333;
-  background: white;
+  background: ${(props) => props.disabled ? '#95a2ad' : 'white'};
 `;
 
 export const Form = styled.form`

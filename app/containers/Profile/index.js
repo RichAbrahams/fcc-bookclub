@@ -21,8 +21,6 @@ export class Profile extends React.PureComponent { // eslint-disable-line react/
       this
         .props
         .updateProfile({ data: payload, resolve, reject });
-    }).then(() => {
-      toastr.success('profile updated');
     });
   }
 
