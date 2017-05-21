@@ -10,8 +10,14 @@
  */
 
 import React from 'react';
+import { browserHistory } from 'react-router';
 
 export default class NotFound extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+
+  componentWillMount() {
+    browserHistory.push('/');
+  }
+
   render() {
     return (
       <h1>

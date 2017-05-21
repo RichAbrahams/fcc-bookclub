@@ -7,14 +7,23 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
+import { createStructuredSelector } from 'reselect';
 import Helmet from 'react-helmet';
 import ChangePasswordForm from 'components/ChangePasswordForm';
 import ProfileForm from 'components/ProfileForm';
 import toastr from 'toastr';
+import { selectUsername } from 'containers/Header/selectors';
 import * as actions from './actions';
 import { Wrapper } from '../../globalStyledComponents';
 
 export class Profile extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+
+  componentWillMount() {
+    if (!this.props.username) {
+      browserHistory.push('/');
+    }
+  }
 
   handleProfileSubmit(payload) {
     return new Promise((resolve, reject) => {
@@ -55,8 +64,12 @@ export class Profile extends React.PureComponent { // eslint-disable-line react/
 Profile.propTypes = {
   updateProfile: PropTypes.func.isRequired,
   updatePassword: PropTypes.func.isRequired,
+  username: PropTypes.string,
 };
 
+const mapStateToProps = createStructuredSelector({
+  username: selectUsername(),
+});
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -65,4 +78,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

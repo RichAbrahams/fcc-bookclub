@@ -6,6 +6,7 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import Helmet from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import MyBooksTabs from 'components/MyBooksTabs';
@@ -13,6 +14,7 @@ import AddBookForm from 'components/AddBookForm';
 import SearchResultsList from 'components/SearchResultsList';
 import MyBooksList from 'components/MyBooksList';
 import MyBooksTitle from 'components/MyBooksTitle';
+import { selectUsername } from 'containers/Header/selectors';
 import * as selectors from './selectors';
 import * as actions from './actions';
 import { Wrapper } from '../../globalStyledComponents';
@@ -21,7 +23,11 @@ import { Wrapper } from '../../globalStyledComponents';
 export class MyBooks extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   componentWillMount() {
-    this.props.retrieveMyBooks();
+    if (!this.props.username) {
+      browserHistory.push('/');
+    } else {
+      this.props.retrieveMyBooks();
+    }
   }
 
   handleSubmit(payload) {
@@ -59,6 +65,7 @@ MyBooks.propTypes = {
   searchResults: PropTypes.array.isRequired,
   retrieveMyBooks: PropTypes.func.isRequired,
   myBooks: PropTypes.array,
+  username: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -66,6 +73,7 @@ const mapStateToProps = createStructuredSelector({
   searchResults: selectors.selectSearchResults(),
   myBooks: selectors.selectMyBooks(),
   slideFrom: selectors.selectSlideFrom(),
+  username: selectUsername(),
 });
 
 function mapDispatchToProps(dispatch) {

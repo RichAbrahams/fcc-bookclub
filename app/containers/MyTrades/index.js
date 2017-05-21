@@ -6,6 +6,7 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import Helmet from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import RequestsMade from 'components/RequestsMade';
@@ -14,6 +15,7 @@ import BooksLoaned from 'components/BooksLoaned';
 import BooksReceived from 'components/BooksReceived';
 import MyTradesTabs from 'components/MyTradesTabs';
 import FontAwesome from 'react-fontawesome';
+import { selectUsername } from 'containers/Header/selectors';
 import * as selectors from './selectors';
 import * as actions from './actions';
 import { Wrapper } from '../../globalStyledComponents';
@@ -22,7 +24,11 @@ import { NavControl, TitleWrapper, NavPageTitle } from './styles';
 export class MyTrades extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   componentWillMount() {
-    this.props.retrieveMyTrades();
+    if (!this.props.username) {
+      browserHistory.push('/');
+    } else {
+      this.props.retrieveMyTrades();
+    }
   }
 
   render() {
@@ -58,6 +64,7 @@ MyTrades.propTypes = {
   activeNavKey: PropTypes.number.isRequired,
   decrementNav: PropTypes.func.isRequired,
   incrementNav: PropTypes.func.isRequired,
+  username: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -68,6 +75,7 @@ const mapStateToProps = createStructuredSelector({
   requestsReceived: selectors.selectRequestsReceived(),
   booksLoaned: selectors.selectBooksLoaned(),
   booksReceived: selectors.selectBooksReceived(),
+  username: selectUsername(),
 });
 
 function mapDispatchToProps(dispatch) {
