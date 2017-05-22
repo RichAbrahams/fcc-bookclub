@@ -1,3 +1,7 @@
 FreeCodeCamp Manage a Book Trading Club project
 
 App can be found at https://fcc-bookclub.herokuapp.com
+
+Uses React / Redux / Redux-Saga / Express
+
+Project boilerplate https://github.com/react-boilerplate/react-boilerplate
